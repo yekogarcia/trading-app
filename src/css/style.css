@@ -1,0 +1,534 @@
+@import url("./admin.css");
+@import url("./helpers.css");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: var(--blue-dark);
+  font-family: Montserrat-Light;
+}
+nav.nav-header {
+  align-items: center;
+  display: flex;
+  background: #fff;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 1%;
+  padding: 0;
+  width: 98%;
+  justify-content: space-between;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -webkit-box-shadow: -1px 6px 10px 1px rgba(0, 0, 0, 0.45);
+  box-shadow: -1px 6px 10px 1px rgba(0, 0, 0, 0.35);
+  z-index: 1;
+}
+.logo {
+  min-width: 100px;
+  width: 9%;
+  margin-left: 5%;
+}
+.navigate-head {
+  display: flex;
+  width: 55%;
+  height: auto;
+  justify-content: space-around;
+  margin-right: 5%;
+}
+.navigate-head a {
+  color: var(--blue-dark);
+  font-family: Montserrat-Regular;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 15px;
+}
+.navigate-head a.login {
+  background-color: var(--blue-dark);
+  border-radius: 5px;
+  color: #fff;
+  font-family: Montserrat-Bold;
+  padding: 4px 12px;
+}
+.navigate-head a.sign-btn {
+  background-color: var(--green-light);
+  border-radius: 5px;
+  color: #fff;
+  font-family: Montserrat-Bold;
+  padding: 4px 12px;
+}
+.nav-header .logo img {
+  content: url("./img/logo.svg");
+}
+.navigate-head a.active {
+  color: var(--green-light);
+}
+.navigate-head a.active-reg {
+  color: var(--blue-dark);
+}
+.main {
+  margin-top: 15vh;
+}
+
+/* Inicio */
+.abouts {
+  width: 100%;
+  height: auto;
+  display: flex;
+  height: 75vh;
+}
+.abouts .about-text {
+  width: 45%;
+  margin: 15vh 5%;
+}
+
+.abouts .about-img img {
+  content: url("./img/abouts.png");
+  width: 100%;
+}
+.abouts .about-img {
+  width: 55%;
+  margin: 5vh 2%;
+  display: flex;
+}
+
+/* Fotter */
+
+.Fotter {
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+  align-items: center;
+  padding: 5px 0;
+}
+.Fotter h4 {
+  font-family: Montserrat-Bold;
+  padding: 0;
+  margin: 0;
+}
+.Fotter p {
+  margin: 0;
+}
+
+/* Empresa */
+.empresa {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 78vh;
+  margin: 15px 0;
+  background: url("./img/mision.png");
+  background-size: contain;
+}
+.title {
+  text-align: center;
+  font-family: Montserrat-Bold;
+}
+.text {
+  font-family: Montserrat-Medium;
+  font-size: 20px;
+}
+.empresa .mision {
+  padding: 50px 50px;
+  width: 55%;
+  margin: 10vh auto;
+  background-color: #f5f5f5;
+}
+.empresa .mision li {
+  margin-top: 10px;
+}
+
+/* lOGIN */
+.view-login {
+  display: flex;
+  height: 75vh;
+  /* justify-content: space-around; */
+}
+
+.view-login .login-img {
+  display: flex;
+  width: 40%;
+  height: 80%;
+  margin: 30px 5% 0 0;
+}
+.view-login .login-img img {
+  content: url("./img/ingreso.png");
+  width: 100%;
+}
+
+.view-login .login {
+  text-align: center;
+  font-family: Montserrat-Bold;
+  margin-top: 5vh;
+}
+.view-login .login h1 {
+  font-family: Montserrat-Regular;
+  margin-bottom: 40px;
+}
+.view-login .login h1 b {
+  font-family: Montserrat-Medium;
+}
+.view-login .login h1 .green {
+  color: var(--green-light);
+}
+
+.green {
+  color: var(--green-light);
+}
+
+.view-login .login a {
+  background-color: #f4f4f4;
+  border-radius: 5px;
+  color: #90a6a6;
+  text-decoration: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+}
+.view-login .login form {
+  background-color: #f4f4f4;
+  padding: 40px 0 20px 0;
+}
+.view-login .login form .logo {
+  width: 20%;
+  margin: 0 auto;
+}
+.view-login .login form img {
+  content: url("./img/LogoWhite.png");
+  display: flex;
+  width: 100%;
+}
+.form-fields {
+  display: grid;
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+}
+.form-fields a {
+  color: var(--blue-dark) !important;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Montserrat-Medium;
+}
+.form-fields input {
+  background-color: #e1e1e1;
+  border-radius: 65px;
+  border: none;
+  color: var(--blue-dark);
+  font-size: 14px;
+  font-family: Montserrat-Medium;
+  font-weight: bold;
+  height: 32px;
+  margin: 7px 0;
+  padding-left: 15px;
+  outline: none;
+}
+.form-fields label {
+  font-family: Montserrat-Bold;
+  font-size: 14px;
+  text-align: left;
+}
+input:focus {
+  padding-left: 15px;
+}
+input::placeholder {
+  color: #90a6a6;
+}
+button {
+  border: none;
+  background-color: var(--green-light);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: Montserrat-Bold;
+  width: 50%;
+  margin: 10px auto;
+  padding: 5px 10px;
+}
+
+/* Registro */
+
+.sign {
+  display: flex;
+  /* height: 75vh; */
+  justify-content: center;
+}
+.sign .img-sign {
+  display: flex;
+  width: 30%;
+  height: 100%;
+  height: 80vh;
+}
+.sign .img-sign img {
+  margin-top: 5vh;
+  width: 100%;
+  content: url("./img/registro.png");
+  right: 0;
+}
+
+.sign form {
+  width: 40%;
+  text-align: center;
+}
+.sign form .form-fields {
+  width: 90%;
+}
+.sign form .icon-white {
+  display: flex;
+  width: 22%;
+  margin: 20px auto 0 auto;
+}
+.sign form img {
+  width: 100%;
+  content: url("./img/LogoWhite.png");
+}
+.sign form .check {
+  display: flex !important;
+}
+.sign form h3 {
+  margin: 0 0 20px 0;
+}
+.sign form .check label {
+  margin: 10px 0 0 10px;
+}
+footer {
+  margin-top: 10vh;
+  padding: 30px;
+  background-color: #02141a;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+}
+footer .body-fotter a:hover {
+  font-weight: bold;
+}
+footer .body-fotter a {
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  padding: 5px;
+}
+footer .body-fotter h4 {
+  font-family: Montserrat-Medium;
+}
+footer .body-fotter {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  text-align: center;
+  /* border-top: 3px solid #a5b9b9 */
+}
+footer .body-fotter div {
+  width: 20%;
+}
+.plans {
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+.plans .title {
+  font-size: 40px;
+}
+.plans .title span {
+  color: var(--green-light);
+}
+.plans h2 {
+  font-family: Montserrat-Bold;
+}
+.plans h1 {
+  font-family: Montserrat-Bold;
+  font-size: 30px;
+  margin: 0;
+  padding: 15px 0 0 0;
+}
+.plans .text-plans p {
+  font-family: Montserrat-Medium;
+  font-weight: bold;
+  font-size: 18px;
+  /* color: var(--blue-dark); */
+  color: #2a4847;
+  margin: 0;
+}
+.plans .packages-plan p {
+  font-family: Montserrat-Bold;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  color: #56c553;
+}
+.plans .packages-plan .prices {
+  padding: 10px 0 15px 0;
+  font-size: 50px;
+}
+.plans .packages-plan .prices span {
+  color: #56c553;
+  font-size: 25px;
+}
+.plans .packages-plan {
+  display: flex;
+  justify-content: space-around;
+}
+.plans .packages-plan .package:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.plans .packages-plan .package:active {
+  opacity: 0.8;
+}
+.plans .package {
+  color: #fff;
+  background-color: #135959;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 30%;
+}
+.plans .wallets-plans .wallets .nequi {
+  content: url("./img/nequi.svg");
+}
+.plans .wallets-plans .wallets .airtm {
+  content: url("./img/aitm.svg");
+}
+.plans .wallets-plans .wallets .daviplata {
+  content: url("./img/daviplata.svg");
+}
+.plans .wallets-plans .wallets .skrill {
+  content: url("./img/skrill.svg");
+}
+.plans .wallets-plans .wallets img {
+  display: flex;
+  width: 155px;
+}
+.plans .wallets-plans .wallets {
+  display: flex;
+  background-color: #eee;
+  border-radius: 15px;
+  height: 130px;
+  align-items: center;
+  text-align: center;
+}
+.plans .wallets-plans .wallets .purse {
+  color: #fff;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  margin: 0;
+  background-color: #135959;
+  height: 100%;
+  display: flex;
+  width: 20%;
+}
+.plans .wallets-plans .wallets .purse p {
+  align-items: center;
+  display: flex;
+  font-family: Montserrat-Medium;
+  font-size: 25px;
+  padding: 10px;
+  margin: 0;
+  text-align: left;
+}
+
+button.wall-continue {
+  width: 200px;
+  font-size: 20px;
+}
+.testimonials-content {
+  font-family: Montserrat-Regular;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  font-weight: normal;
+}
+.testimonials-content b {
+  font-family: Montserrat-Medium;
+  font-weight: bold;
+}
+.testimonial-body {
+  width: 90%;
+  margin: auto;
+}
+.testimonial-body p {
+  font-size: 20px;
+  font-weight: bold;
+}
+.contact {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.contact .title {
+  width: 100%;
+  text-align: center;
+}
+.contact .title p {
+  font-size: 20px;
+  margin-top: 5px;
+}
+.contact .title img {
+  display: flex;
+  content: url("./img/LogoWhite.png");
+  width: 120px;
+  margin: auto;
+}
+.contact .details h1.title {
+  font-size: 30px;
+  text-align: left;
+}
+.contact > .form,
+.details {
+  width: 45%;
+}
+.contact .form form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+input::placeholder,
+textarea::placeholder {
+  font-family: Montserrat-Medium;
+}
+input,
+textarea {
+  padding-left: 15px;
+}
+.contact .form form > input::placeholder,
+textarea::placeholder {
+  font-size: 18px;
+}
+.contact .form form > input,
+textarea {
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #eee;
+  margin: 10px 0;
+  height: 30px;
+  border-radius: 5px;
+}
+.contact .form form > textarea {
+  height: 70px;
+}
+.contact .form form > a {
+  width: 70%;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.contact .form form > button {
+  width: 30%;
+}
+.contact .text-contact i {
+  font-size: 30px;
+  color: var(--green-light);
+}
+.contact .text-contact p {
+  margin-left: 0.5rem;
+}
+.contact .text-contact {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
