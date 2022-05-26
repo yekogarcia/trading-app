@@ -2,10 +2,10 @@ import Swal from "sweetalert2";
 import { types } from "../types/types";
 import { fetchWithoutToken, fetchWithToken } from "../helpers/fetch"
 
-export const initSession = (email, password) => {
+export const initSession = (profile, email, password) => {
     return async (dispatch) => {
 
-        const resp = await fetchWithoutToken('auth/login', { email, password }, 'POST');
+        const resp = await fetchWithoutToken('auth/login', { profile, email, password }, 'POST');
         const body = await resp.json();
 
         console.log(body);

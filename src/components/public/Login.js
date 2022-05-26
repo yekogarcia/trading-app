@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { initSession } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
@@ -14,13 +14,27 @@ export const Login = () => {
     password: 'akatsuki123'
   });
 
-
   const { email, password } = formValues;
+  
+  const [classProfile, classSetProfile] = useState("student")
+  const [profile, setProfile] = useState(4)
+  
+  useEffect(() => {
+    document.querySelector(".section-profile .green").classList.remove('green');
+    document.querySelector("." + classProfile).className += " green";
+  })
 
 
   const executeLogin = (e) => {
     e.preventDefault();
-    dispatch(initSession(email, password));
+    dispatch(initSession(profile, email, password));
+  }
+
+
+  const selectProfile = (idProfile, e) => {
+    e.preventDefault();
+    classSetProfile(e.target.classList[0]);
+    setProfile(idProfile);
   }
 
   return (
@@ -30,9 +44,11 @@ export const Login = () => {
       </div>
       <div className='login'>
         <h1><b>¡Ven</b> y se parte de este <b className='green'>gran equipo!</b></h1>
-        <a href='' >ESTUDIANTE</a>
-        <a href='' >DOCENTE</a>
-        <a href='' >ADMINISTRADOR</a>
+        <section className='section-profile'>
+          <a onClick={(e) => selectProfile(4, e)} className="student green" >ESTUDIANTE</a>
+          <a onClick={(e) => selectProfile(3, e)} className="teachers">DOCENTE</a>
+          <a onClick={(e) => selectProfile(2, e)} className="administrator">ADMINISTRADOR</a>
+        </section>
         <form onSubmit={executeLogin}>
           <div className='logo'>
             <img src='' alt='logo-login' />
