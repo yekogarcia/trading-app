@@ -30,7 +30,7 @@ export const Contact = () => {
                     <textarea name="descriptions" placeholder='Descripción' />
                     <a><input type="checkbox" name="accept-terms" />
                     Acepto los términos, condiciones y politicas de Edfiel Academy</a>
-                    <button>ENVIAR</button>
+                    <button className="button">ENVIAR</button>
                 </form>
             </section>
         </div>

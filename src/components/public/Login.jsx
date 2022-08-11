@@ -69,7 +69,7 @@ export const Login = () => {
               onChange={handleInputChange}
             />
             <a href=''>¿Olvidaste tu nombre de usuario o contraseña?</a>
-            <button type='submit'>ACCEDER</button>
+            <button className='button' type='submit'>ACCEDER</button>
           </div>
         </form>
       </div>

@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { sendRegisterUsers } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
+import { Plans } from './Plans';
 
 
 export const Sign = () => {
+  const navigate = useNavigate();
+
+  const [idPlan, setIdPlans] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -23,14 +29,25 @@ export const Sign = () => {
 
   const execRegister = (e) => {
     e.preventDefault();
-    dispatch(sendRegisterUsers(formValues))
+
+    if (idPlan == 0) {
+      Swal.fire('Selecciona', 'Debes seleccionar algún paquete de subcripción', 'question');
+      return;
+    }
+    formValues.id_plan = idPlan;
+    dispatch(sendRegisterUsers(formValues)).then(function (r) {
+      if (r.ok) {
+            navigate("/validate-pay");
+      }
+    })
   }
 
 
   return (
     <div className='sign'>
-      <div className='img-sign'>
-        <img src='' alt='img-register' />
+      <div className='plans select-plans'>
+        <h2>SELECCIONA TU PAQUETE</h2>
+        <Plans plan={idPlan} setPlan={setIdPlans} />
       </div>
       <form onSubmit={execRegister}>
         <div className='icon-white'>
@@ -107,10 +124,15 @@ export const Sign = () => {
           <label>Acepto los terminos,  condiciones y politicas de crehana.</label>
         </div>
         <div className='form-fields'>
-          <button type='submit'>Regístrarse</button>
+          <button className='button' type='submit'>Regístrarse</button>
         </div>
         <div className='form-fields'>
-          <a href=''>¿Ya tienes cuenta?</a>
+          <NavLink to="/login">
+            ¿Ya tienes cuenta?
+          </NavLink>
+          <NavLink to="/validate-pay">
+            Validar Pago
+          </NavLink>
         </div>
       </form>
     </div>

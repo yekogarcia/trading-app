@@ -8,7 +8,7 @@ import { About } from './About'
 import { Company } from './Company'
 import { Contact } from './Contact'
 import { Login } from './Login'
-import { Plans } from './Plans'
+import { Payments } from './Payments'
 import { Services } from './Services'
 import { Sign } from './Sign'
 import { Testimonials } from './Testimonials'
@@ -25,8 +25,8 @@ export const Main = () => {
         <Route exact path='/testimonials' element={<Testimonials />} />
         <Route exact path='/company' element={<Company />} />
         <Route exact path='/contact' element={<Contact />} />
-        {/* <Route exact path='/sign' element={<Sign />} /> */}
-        <Route exact path='/sign' element={<Plans />} />
+        <Route exact path='/sign' element={<Sign />} />
+        <Route exact path='/validate-pay' element={<Payments />} />
         <Route exact path='/login' element={<Login />} />
 
       </Routes>

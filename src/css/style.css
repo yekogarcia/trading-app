@@ -1,12 +1,13 @@
 @import url("./admin.css");
 @import url("./helpers.css");
+@import url("./width.css");
 
 html,
 body {
   margin: 0;
   padding: 0;
-  color: var(--blue-dark);
-  font-family: Montserrat-Light;
+  color: var(--blue-dark) !important;
+  font-family: Montserrat-Light !important;
 }
 nav.nav-header {
   align-items: center;
@@ -106,6 +107,7 @@ nav.nav-header {
   font-family: Montserrat-Bold;
   padding: 0;
   margin: 0;
+  color: #fff;
 }
 .Fotter p {
   margin: 0;
@@ -174,7 +176,7 @@ nav.nav-header {
 }
 
 .green {
-  color: var(--green-light)!important;
+  color: var(--green-light) !important;
 }
 
 .view-login .login a {
@@ -234,7 +236,7 @@ input:focus {
 input::placeholder {
   color: #90a6a6;
 }
-button {
+.button {
   border: none;
   background-color: var(--green-light);
   border-radius: 5px;
@@ -277,7 +279,7 @@ button {
 .sign form .icon-white {
   display: flex;
   width: 22%;
-  margin: 20px auto 0 auto;
+  margin: 0 auto;
 }
 .sign form img {
   width: 100%;
@@ -296,7 +298,7 @@ footer {
   margin-top: 10vh;
   padding: 30px;
   background-color: #02141a;
-  color: #fff;
+  color: #fff !important;
 }
 a {
   text-decoration: none;
@@ -312,6 +314,8 @@ footer .body-fotter a {
 }
 footer .body-fotter h4 {
   font-family: Montserrat-Medium;
+  color: #fff;
+  font-weight: bold;
 }
 footer .body-fotter {
   display: flex;
@@ -323,11 +327,23 @@ footer .body-fotter {
 footer .body-fotter div {
   width: 20%;
 }
+.select-plans .package {
+  width: 300px !important;
+  height: 180px;
+}
+.select-plans .package .description-plan {
+  display: none;
+}
+.select-plans {
+  width: 50% !important;
+  flex-wrap: wrap;
+  margin: 40px 0 0 0 !important;
+}
 .plans {
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  width: 80%;
+  width: 90%;
 }
 .plans .title {
   font-size: 40px;
@@ -337,12 +353,15 @@ footer .body-fotter div {
 }
 .plans h2 {
   font-family: Montserrat-Bold;
+  margin: 30px 0 0 0;
+  color: #fff;
 }
 .plans h1 {
   font-family: Montserrat-Bold;
   font-size: 30px;
   margin: 0;
   padding: 15px 0 0 0;
+  /* color: #fff; */
 }
 .plans .text-plans p {
   font-family: Montserrat-Medium;
@@ -350,17 +369,28 @@ footer .body-fotter div {
   font-size: 18px;
   /* color: var(--blue-dark); */
   color: #2a4847;
-  margin: 0;
+}
+.plans .packages-plan h1 {
+  color: #fff;
 }
 .plans .packages-plan p {
   font-family: Montserrat-Bold;
-  font-size: 18px;
-  margin: 0;
-  padding: 0;
+  font-size: 16px;
   color: #56c553;
+  margin: 0;
+  padding: 5px 0 0 0;
+}
+p.description-plan {
+  font-family: Montserrat-Medium !important;
+  color: #fff !important;
+  text-align: justify !important;
+  padding: 5px 15px 50px 15px !important;
+  font-size: 15px !important;
+  display: block;
+  /* font-weight: bold; */
 }
 .plans .packages-plan .prices {
-  padding: 10px 0 15px 0;
+  padding: 0;
   font-size: 50px;
 }
 .plans .packages-plan .prices span {
@@ -370,12 +400,21 @@ footer .body-fotter div {
 .plans .packages-plan {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .plans .packages-plan .package:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.9 !important;
+  transition: 0.3s;
+  /* height: auto!important;
+  width: 400px;
+  */
 }
-.plans .packages-plan .package:active {
+/* .plans .packages-plan .package:hover > p {
+  display: block;
+  transition: 3s;
+} */
+.package-select {
   opacity: 0.8;
 }
 .plans .package {
@@ -383,9 +422,11 @@ footer .body-fotter div {
   background-color: #135959;
   border-radius: 10px;
   text-align: center;
-  min-width: 30%;
+  width: 360px;
+  margin: 15px;
+  /* height: 180px; */
 }
-.plans .wallets-plans .wallets .nequi {
+/* .plans .wallets-plans .wallets .nequi {
   content: url("./img/nequi.svg");
 }
 .plans .wallets-plans .wallets .airtm {
@@ -396,7 +437,7 @@ footer .body-fotter div {
 }
 .plans .wallets-plans .wallets .skrill {
   content: url("./img/skrill.svg");
-}
+} */
 .plans .wallets-plans .wallets img {
   display: flex;
   width: 155px;
@@ -408,6 +449,7 @@ footer .body-fotter div {
   height: 130px;
   align-items: center;
   text-align: center;
+  margin: 20px 0;
 }
 .plans .wallets-plans .wallets .purse {
   color: #fff;
@@ -428,6 +470,38 @@ footer .body-fotter div {
   margin: 0;
   text-align: left;
 }
+.wallets .select {
+  background-color: #135959;
+  padding: 3px 20px;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+}
+.icon-select {
+  display: flex;
+  cursor: pointer;
+  width: 155px;
+}
+.wallets .check_pay {
+  font-size: 69px;
+  /* background-color: rgb(190 190 190 / 69%);
+  color: #55c353; */
+  /* color: #062831; */
+  background-color: #5cd55b;
+  color: #fff;
+  opacity: 0.8;
+  border-radius: 85px;
+  height: 70px;
+  position: absolute;
+  margin-top: 4px;
+  margin-left: 43px;
+}
+.wallets .check_none {
+  display: none;
+}
+
 
 button.wall-continue {
   width: 200px;
@@ -532,10 +606,74 @@ textarea {
   align-items: center;
   justify-content: left;
 }
-a{
+a {
   cursor: pointer;
 }
 
-.login a:hover{
-  color: var(--green-light)!important;
+.login a:hover {
+  color: var(--green-light) !important;
+}
+.payments {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding: 15px;
+}
+.payments form {
+  width: 90%;
+  margin: auto;
+}
+.payments form label {
+  display: flex;
+}
+.payments form input {
+  width: 100%;
+  display: flex;
+}
+.payments form {
+  text-align: center;
+  align-items: center;
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.payments form .pay-inputs {
+  width: 48%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.input-contact {
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background-color: #eee;
+  margin: 10px 0;
+  height: 30px;
+  border-radius: 5px;
+}
+.label-mon {
+  font-size: 18px;
+  font-family: Montserrat-Medium;
+  color: #696c6c;
+}
+.wpp3 {
+  width: 30%;
+  height: 35px;
+  font-size: 20px;
+}
+.titleh1 {
+  font-family: Montserrat-Bold;
+  font-size: 40px;
+  margin: 0;
+  padding: 15px 0 0 0;
+  color: var(--blue-dark);
+}
+.subtitle {
+  font-family: Montserrat-Medium;
+  font-size: 25px;
+  margin: 0;
+  color: var(--blue-dark);
 }
