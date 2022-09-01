@@ -9,6 +9,7 @@ import { LeftMenu } from './dashboard/LeftMenu'
 import { Estudents } from './users/Estudents'
 import { Users } from './users/Users'
 import { Payments } from './payments/Payments'
+import { Academics } from './academics/Academics'
 
 export const Admin = () => {
   return (
@@ -17,8 +18,8 @@ export const Admin = () => {
       <main className='content'>
       <NavbarAdmin />
         <Routes>
-          <Route exact path='/' element={<Dashboard />} />
-          <Route exact path='academics' element={<Dashboard/>} />
+          <Route exact path='/' element={<Academics />} />
+          <Route exact path='academics' element={<Academics/>} />
           <Route exact path='payments' element={<Payments/>} />
           <Route exact path='estudents' element={<Estudents />} />
           <Route exact path='users' element={<Users />} />

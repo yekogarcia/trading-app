@@ -257,8 +257,21 @@ i.large.material-icons {
   align-items: center;
   place-content: center;
   width: 25%;
+  /* width: 20%; */
   margin: 1rem;
   cursor: pointer;
+}
+.module img {
+  width: 80px;
+  text-align: center;
+  margin: auto;
+  padding-bottom: 5px;
+}
+h3.title-module {
+  /* color: #fff; */
+  padding-top: 5px;
+  margin: 0;
+  font-weight: bold;
 }
 .filters {
   position: relative;
@@ -285,4 +298,18 @@ label.ant-radio-button-wrapper.btn-create {
 }
 .ant-upload-picture-card-wrapper {
   text-align: center;
+}
+header.head-table {
+  width: 96%;
+  margin: auto;
+}
+.loading {
+  position: fixed;
+  opacity: 1;
+  left: 50%;
+  top: 50%;
+}
+.image-column{
+  display: flex;
+  width: 60px;
 }

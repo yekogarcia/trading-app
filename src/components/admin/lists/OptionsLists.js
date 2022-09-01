@@ -43,27 +43,37 @@ export const OptionsLists = (handleDelete, handleUpdate) => {
 
 
 export const OptionsBlock = (contextMenu) => {
-  const [show, setShow] = useState(false);
 
-  const handleVisibleChange = (newVisible) => {
-    setShow(newVisible);
-  };
+  const dat = [
+    {
+      title: "Options",
+      dataIndex: "options",
+      className: "wp-100",
+      render: (_, record) => (
+        <Popover
+          title=""
+          content={() => contextMenu({ ...record })}
+          placement="right"
+        >
+          <a><AlignLeftOutlined /></a>
+        </Popover>
+      )
+    }
+  ];
+  return dat;
+};
 
-  return ([{
-    title: "Options",
-    dataIndex: "options",
-    className: "wp-100",
-    render: (_, record) => (
-      <Popover
-        title=""
-        content={() => contextMenu({ ...record }, setShow)}
-        trigger="click"
-        placement="right"
-        visible={show}
-        onVisibleChange={handleVisibleChange}
-      >
-        <a onClick={() => setShow(true)}><AlignLeftOutlined /></a>
-      </Popover>
-    )
-  }]);
+export const addColumn = ({type, title, name, width, data}) => {
+
+  const dat = [
+    {
+      title: "Options",
+      dataIndex: "options",
+      className: "wp-100",
+      render: (_, record) => (
+       <a>Ver Foto</a>
+      )
+    }
+  ];
+  return dat;
 };

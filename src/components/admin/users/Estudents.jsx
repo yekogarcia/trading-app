@@ -125,7 +125,7 @@ export const Estudents = () => {
     }
   };
 
-  const contextMenu = (record, setShow) => {
+  const contextMenu = (record) => {
     console.log(record);
     return (
       <div className="options">
@@ -142,7 +142,6 @@ export const Estudents = () => {
               title="Esta seguro de inactivar este usuario?"
               onConfirm={() => {
                 handleActivation(record);
-                setShow(false);
               }}
             >
               <a>
@@ -155,7 +154,6 @@ export const Estudents = () => {
               title="Esta seguro de activar este usuario?"
               onConfirm={() => {
                 handleActivation(record);
-                setShow(false);
               }}
             >
               <a>

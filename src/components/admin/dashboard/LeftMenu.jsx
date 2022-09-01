@@ -22,7 +22,7 @@ export const LeftMenu = () => {
           <li>
             <NavLink to="academics">ACADEMIAS</NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="marketing">MARKETING DIGITAL</NavLink>
           </li>
           <li>
@@ -30,7 +30,7 @@ export const LeftMenu = () => {
           </li>
           <li>
             <NavLink to="info-poduct">INFO PRODUCTOS</NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to="payments">PAGOS</NavLink>
           </li>

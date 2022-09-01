@@ -16,19 +16,30 @@ import { Button } from "antd/lib/radio";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getSelectDinamicTable } from "../../../actions/config-menu";
+import {
+  addUsers,
+  getProfiles,
+  getSelectDinamicTable,
+} from "../../../actions/config-menu";
+import { addRow } from "../lists/actionsList";
 const { Option } = Select;
 
-export const FormUsers = ({ visible, setVisible }) => {
+export const FormUsers = ({
+  visible,
+  setVisible,
+  data,
+  setData,
+  fieldValues
+}) => {
   const [form] = Form.useForm();
   const dispatch = useDispatch();
   const [profile, setProfile] = useState([]);
   const [academies, setAcademies] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState(false);
 
   useEffect(() => {
-    dispatch(getSelectDinamicTable("profiles")).then(function (pr) {
+    dispatch(getProfiles()).then(function (pr) {
       setProfile(pr);
     });
     dispatch(getSelectDinamicTable("academies")).then(function (pr) {
@@ -36,19 +47,52 @@ export const FormUsers = ({ visible, setVisible }) => {
     });
   }, []);
 
-  const onClose = () => {
+  // console.log(fieldValues);
+  fieldValues.password = "password";
+  form.setFieldsValue(fieldValues);
+  
+  fieldValues = [];
+
+  const onCancel = () => {
     form.resetFields();
     setVisible(false);
   };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   const onChange = (value) => {
     console.log(value);
   };
+
   const handleCreateUser = () => {
     form
       .validateFields()
       .then((values) => {
         console.log(values);
-        form.resetFields();
+        values.academy =
+          typeof values.academy !== "undefined" ? values.academy : [];
+        const academy = [];
+        values.academy.map((val) => academy.push(val[0]));
+        console.log(academy);
+        values.academy = JSON.stringify(academy);
+        values.photo_profile =
+          typeof values.myFile !== "undefined" &&
+          values.myFile !== null
+            ? "img/" + values.myFile.file.response.file
+            : "";
+        console.log(values);
+        setLoading(true);
+        dispatch(addUsers(values)).then((res) => {
+          if (res) {
+            const datNew = addRow(data, res);
+            setData(datNew);
+            form.resetFields();
+            setVisible(false);
+          }
+          setLoading(false);
+        });
       })
       .catch((info) => {
         console.log("Validate Failed:", info);
@@ -56,7 +100,7 @@ export const FormUsers = ({ visible, setVisible }) => {
   };
 
   let options = [];
-  academies.map(({ id, name }) => options.push({ label: name, value: id }));
+  academies.map(({ key, name }) => options.push({ label: name, value: name }));
 
   const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -66,17 +110,13 @@ export const FormUsers = ({ visible, setVisible }) => {
 
   const beforeUpload = (file) => {
     const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-
     if (!isJpgOrPng) {
       message.error("You can only upload JPG/PNG file!");
     }
-
     const isLt2M = file.size / 1024 / 1024 < 2;
-
     if (!isLt2M) {
       message.error("Image must smaller than 2MB!");
     }
-
     return isJpgOrPng && isLt2M;
   };
 
@@ -120,13 +160,13 @@ export const FormUsers = ({ visible, setVisible }) => {
         }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancelar</Button>
+            <Button onClick={onCancel}>Cancelar</Button>
             <Button
               type="primary"
               onClick={handleCreateUser}
               className="btn-create"
             >
-              Crear
+              Guardar
             </Button>
           </Space>
         }
@@ -135,7 +175,7 @@ export const FormUsers = ({ visible, setVisible }) => {
           <Row gutter={16}>
             <Col span={24}>
               <Form.Item
-                name="photo_profile"
+                name="myFile"
                 label=""
                 rules={[
                   {
@@ -149,9 +189,10 @@ export const FormUsers = ({ visible, setVisible }) => {
                   listType="picture-card"
                   className="avatar-uploader"
                   showUploadList={false}
-                  action="http://localhost:4000/api/ad/upload"
+                  action={process.env.REACT_APP_URL_UPLOAD}
                   beforeUpload={beforeUpload}
                   onChange={handleChange}
+                  // fileList={[]}
                 >
                   {imageUrl ? (
                     <img
@@ -168,6 +209,9 @@ export const FormUsers = ({ visible, setVisible }) => {
               </Form.Item>
             </Col>
             <Col span={12}>
+              <Form.Item name="id" label="Id" hidden>
+                <Input placeholder="Please enter Id" />
+              </Form.Item>
               <Form.Item
                 name="name"
                 label="Name"
@@ -235,23 +279,14 @@ export const FormUsers = ({ visible, setVisible }) => {
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item
-                name="academia"
-                label="Academia"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please select the academics",
-                  },
-                ]}
-              >
+              <Form.Item name="academy" label="Academia">
                 <Cascader
                   style={{ width: "100%" }}
                   options={options}
                   onChange={onChange}
                   multiple
                   maxTagCount="responsive"
-                  // defaultValue={["bamboo"]}
+                  // defaultValue={}
                 />
               </Form.Item>
             </Col>

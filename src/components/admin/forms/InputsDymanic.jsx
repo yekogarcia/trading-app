@@ -139,10 +139,10 @@ export const Uploader = ({ prms, file }) => {
   let { required, field, label, type_input } = prms;
   required == "NO" ? (required = false) : (required = true);
 
-  
+  const url = process.env.REACT_APP_URL_UPLOAD;
   const props = {
     name: "myFile",
-    action: "http://localhost:4000/api/ad/upload",
+    action: url,
     listType: "picture",
     defaultFileList: [...file],
     maxCount: 1,

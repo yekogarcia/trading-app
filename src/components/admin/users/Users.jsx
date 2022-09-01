@@ -10,20 +10,18 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  getEstudents,
-  getUsers,
-  updateStateRow,
-} from "../../../actions/config-menu";
+import { getUsers, updateStateRow } from "../../../actions/config-menu";
 import { ColumnsList } from "../lists/ColumnsList";
 import { Filters } from "../lists/Filters";
-import { OptionsBlock } from "../lists/OptionsLists";
+import { OptionsBlock, OptionsLists } from "../lists/OptionsLists";
 import { FormUsers } from "./FormUsers";
 
 export const Users = () => {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
   const [data, setData] = useState([]);
+  const [fieldValues, setFieldValues] = useState([]);
+
   const dispatch = useDispatch();
 
   const [pagination, setPagination] = useState({
@@ -31,11 +29,9 @@ export const Users = () => {
     pageSize: 10,
   });
   const fecha = moment().format("YYYY-MM-DD HH:MM");
-  console.log(fecha);
 
   useEffect(() => {
     dispatch(getUsers()).then(function (e) {
-      console.log(e);
       setData(e);
       setLoading(false);
     });
@@ -80,7 +76,7 @@ export const Users = () => {
     },
     {
       label: "Perfil",
-      name: "profile",
+      name: "profile_text",
       width: "wp-100",
       filter: "order",
     },
@@ -88,6 +84,21 @@ export const Users = () => {
       label: "Fecha activación",
       name: "activate_datetime",
       filter: false,
+    },
+    {
+      type: "tags",
+      label: "Academias",
+      name: "academy",
+      width: "wp-150",
+      filter: false,
+    },
+    {
+      type: "image",
+      label: "Foto perfil",
+      name: "photo_profile",
+      width: "wp-100",
+      filter: false,
+      text: "Ver foto",
     },
   ];
 
@@ -104,10 +115,43 @@ export const Users = () => {
     },
   ];
 
-  const handleUpdate = () => {};
+  const handleUpdate = (record) => {
+    setVisible(true);
+    console.log(record);
+    delete record.key;
+    delete record.activate_datetime;
+    delete record.code_referred;
+    delete record.company;
+    delete record.create_datetime;
+    delete record.id_center;
+    delete record.id_plans;
+    delete record.referral_code;
+    delete record.state;
+    delete record.user_login;
+    delete record.token;
+    const academy = [];
+    record.academy.forEach((pr) => {
+      academy.push([pr]);
+    });
+    record.academy = academy;
+    if(record.photo_profile){
+      
+      const fileList = [
+        {
+          uid: "-1",
+          name: record.photo_profile,
+          status: "done",
+          url: `${process.env.REACT_APP_URL_FILES}${record.photo_profile}`,
+          thumbUrl: `${process.env.REACT_APP_URL_FILES}${record.photo_profile}`,
+        },
+      ];
+      record.photo_profile = fileList;
+    }
+    console.log(record);
+    setFieldValues(record);
+  };
 
   const handleActivation = ({ id, state }) => {
-    console.log(id);
     let new_state = "";
     state === "ACTIVO" ? (new_state = "INACTIVO") : (new_state = "ACTIVO");
     dispatch(updateStateRow(id, "users", new_state));
@@ -122,13 +166,11 @@ export const Users = () => {
     }
   };
 
-  const contextMenu = (record, setShow) => {
-    console.log(record);
+  const contextMenu = (record) => {
     return (
       <div className="options">
         <div>
-          {/* <a onClick={() => handleUpdate(record)}> */}
-          <a>
+          <a onClick={() => handleUpdate(record)}>
             <EditOutlined />
             Actualizar datos
           </a>
@@ -139,7 +181,6 @@ export const Users = () => {
               title="Esta seguro de inactivar este usuario?"
               onConfirm={() => {
                 handleActivation(record);
-                setShow(false);
               }}
             >
               <a>
@@ -152,7 +193,6 @@ export const Users = () => {
               title="Esta seguro de activar este usuario?"
               onConfirm={() => {
                 handleActivation(record);
-                setShow(false);
               }}
             >
               <a>
@@ -176,16 +216,25 @@ export const Users = () => {
       <div className="page-table">
         <header className="head-table">
           <h2>Usuarios</h2>
+          <Button
+            type="primary"
+            onClick={() => {
+              setVisible(true);
+              setFieldValues([]);
+            }}
+            icon={<PlusOutlined />}
+          >
+            Nuevo
+          </Button>
         </header>
         {/* <Filters filters={filters} /> */}
-        <Button
-          type="primary"
-          onClick={() => setVisible(true)}
-          icon={<PlusOutlined />}
-        >
-          New account
-        </Button>
-        <FormUsers visible={visible} setVisible={setVisible} />
+        <FormUsers
+          visible={visible}
+          setVisible={setVisible}
+          data={data}
+          setData={setData}
+          fieldValues={fieldValues}
+        />
         <div className="table">
           <Table
             columns={columns}
