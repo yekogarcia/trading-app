@@ -27,7 +27,7 @@ export const Company = () => {
         <h1 className='title'>PASO A PASO</h1>
         <ul>
           <li className='text'>
-            Las personas y herramientas involucradas (educadores,lideres,sistema,plataforma) cuentan con los resultados de todos los temas a tratar.
+            Las personas y herramientas involucradas (educadores, lideres, sistema, plataforma) cuentan con los resultados de todos los temas a tratar.
           </li>
           <li className='text'>
             Nuestro sistema te permite iniciar desde cero, podrás disfrutar de clases en vivo, clases pregrabadas, tutorías,capacitaciones etc.

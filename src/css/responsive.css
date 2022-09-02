@@ -1,0 +1,71 @@
+@media only screen and (min-width: 900px) and (max-width: 1000px) {
+  .navigate-head {
+    width: 75% !important;
+  }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1100px) {
+  .navigate-head {
+    width: 70% !important;
+  }
+}
+@media only screen and (min-width: 1100px) and (max-width: 1200px) {
+  .navigate-head {
+    width: 65% !important;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .contact > .form,
+  .details {
+    min-width: 90% !important;
+  }
+  .view-login .login-img {
+    display: none!important;
+  }
+  .view-login .login {
+    margin: auto;
+    width: 90%;
+  }
+  .select-plans {
+    max-width: 30%!important;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .abouts {
+    display: block !important;
+    height: auto !important;
+  }
+  .about-text {
+    text-align: center;
+    width: 90% !important;
+    margin: 20px !important;
+  }
+  .about-img {
+    margin: auto !important;
+    width: 90% !important;
+  }
+  .text {
+    font-size: 18px !important;
+  }
+  .title {
+    font-size: 22px !important;
+  }
+  .empresa .mision {
+    width: 90% !important;
+  }
+  .testimonial-body p {
+    font-size: 17px !important;
+  }
+  .testimonials-content h1 {
+    font-size: 20px !important;
+  }
+  .plans {
+    width: 100% !important;
+  }
+  .packages-plan {
+    margin: auto !important;
+    width: 90% !important;
+  }
+  .package {
+    width: 100% !important;
+  }
+}
