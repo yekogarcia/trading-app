@@ -296,6 +296,10 @@ label.ant-radio-button-wrapper.btn-create {
   background: #1890ff;
   color: #fff;
 }
+label.ant-radio-button-wrapper.btn-delete {
+  background: #f74954e5;
+  color: #fff;
+}
 .ant-upload-picture-card-wrapper {
   text-align: center;
 }

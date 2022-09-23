@@ -14,7 +14,10 @@ import {
 } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getSelectDinamicTable } from "../../../actions/config-menu";
+import {
+  getSelectDinamicTable,
+  removeFiles,
+} from "../../../actions/config-menu";
 const { Option } = Select;
 
 export const TypeInput = ({ prms }) => {
@@ -133,13 +136,20 @@ export const SelectBox = ({ prms }) => {
   );
 };
 
-export const Uploader = ({ prms, file }) => {
+export const Uploader = ({ prms, file, type }) => {
   console.log(prms);
   console.log(file);
   let { required, field, label, type_input } = prms;
   required == "NO" ? (required = false) : (required = true);
 
-  const url = process.env.REACT_APP_URL_UPLOAD;
+  const dispatch = useDispatch();
+  let url = process.env.REACT_APP_URL_UPLOAD;
+  if (typeof type !== "undefined") {
+    if (type === "VIDEO") {
+      url = process.env.REACT_APP_URL_UPLOAD_VIDEO;
+    }
+  }
+
   const props = {
     name: "myFile",
     action: url,
@@ -151,21 +161,32 @@ export const Uploader = ({ prms, file }) => {
     },
 
     onChange(info) {
-      console.log(info);
-      if (info.file.status !== "uploading") {
-        console.log(info.file, info.fileList);
-      }
+      // console.log(info);
       if (info.file.status === "done") {
         message.success(`${info.file.name} file uploaded successfully`);
       } else if (info.file.status === "error") {
         message.error(`${info.file.name} file upload failed.`);
       }
+      if (info.file.status === "removed") {
+        dispatch(removeFiles({ folder: "img", url: info.file.response.file }));
+        console.log("remover");
+      }
     },
   };
+
+  const normFile = (e) => {
+    // console.log('Upload && e.fileList;event:', e);
+    if (Array.isArray(e)) {
+        return e;
+    }
+    return e.file && e.fileList;
+};
 
   return (
     <Form.Item
       name={field}
+      valuePropName="fileList"
+      getValueFromEvent={normFile}
       rules={[{ required: required }]}
       style={{
         display: "inline-block",

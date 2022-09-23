@@ -10,6 +10,7 @@ import { Estudents } from "./users/Estudents";
 import { Users } from "./users/Users";
 import { Payments } from "./payments/Payments";
 import { Academics } from "./academics/Academics";
+import { ListAcademies } from "./academics/ListAcademies";
 
 export const Admin = () => {
   return (
@@ -18,8 +19,9 @@ export const Admin = () => {
       <main className="content">
         <NavbarAdmin />
         <Routes>
-          <Route path="/:academie" element={<Academics />} />
-          <Route path="academics/:academie" element={<Academics />} />
+          <Route path="/" element={<Academics />} />
+          <Route path="/academics" element={<Academics />} />
+          <Route path="/academics/list/:id/:name" element={<ListAcademies />} />
           <Route exact path="payments" element={<Payments />} />
           <Route exact path="estudents" element={<Estudents />} />
           <Route exact path="users" element={<Users />} />

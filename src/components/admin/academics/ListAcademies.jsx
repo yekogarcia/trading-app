@@ -10,19 +10,29 @@ import moment from "moment";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { getUsers, updateStateRow } from "../../../actions/config-menu";
 import { ColumnsList } from "../lists/ColumnsList";
 import { Filters } from "../lists/Filters";
 import { OptionsBlock, OptionsLists } from "../lists/OptionsLists";
-import { FormUsers } from "./FormAcademies";
+import { FormAcademies } from "./FormAcademies";
 
 export const ListAcademies = () => {
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
+  const [title, setTitle] = useState("List");
+
   const [data, setData] = useState([]);
   const [fieldValues, setFieldValues] = useState([]);
 
   const dispatch = useDispatch();
+  let { id, name } = useParams();
+
+  useEffect(() => {
+    setTitle(name);
+    
+  }, [name])
+ 
 
   const [pagination, setPagination] = useState({
     current: 1,
@@ -45,61 +55,23 @@ export const ListAcademies = () => {
       width: "wp-50",
     },
     {
-      label: "Nombre",
+      label: "Nombre del curso",
       name: "name",
       filter: "order.search",
-      width: "wp-150",
+      width: "wp-300",
     },
     {
-      label: "Email / Usuario",
-      name: "email",
-      width: "wp-200",
+      label: "Descripción",
+      name: "description",
+      width: "wp-300",
       filter: "order.search",
     },
     {
-      label: "Celular",
-      name: "cell_phone",
-      width: "wp-150",
-      filter: "search",
-    },
-    {
-      label: "Fecha y hora",
-      name: "create_datetime",
-      width: "wp-200",
-      filter: false,
-    },
-    {
-      label: "Estado",
-      name: "state",
-      width: "wp-100",
-      filter: "order",
-    },
-    {
-      label: "Perfil",
-      name: "profile_text",
-      width: "wp-100",
-      filter: "order",
-    },
-    {
-      label: "Fecha activación",
-      name: "activate_datetime",
-      filter: false,
-    },
-    {
-      type: "tags",
-      label: "Academias",
-      name: "academy",
-      width: "wp-150",
-      filter: false,
-    },
-    {
-      type: "image",
-      label: "Foto perfil",
-      name: "photo_profile",
-      width: "wp-100",
-      filter: false,
-      text: "Ver foto",
-    },
+      label: "Icono / Imagen",
+      name: "icon",
+      width: "wp-300",
+      filter: false
+    }
   ];
 
   const filters = [
@@ -215,7 +187,7 @@ export const ListAcademies = () => {
     <div className="ct">
       <div className="page-table">
         <header className="head-table">
-          <h2>Usuarios</h2>
+          <h2>{title}</h2>
           <Button
             type="primary"
             onClick={() => {
@@ -228,7 +200,7 @@ export const ListAcademies = () => {
           </Button>
         </header>
         {/* <Filters filters={filters} /> */}
-        <FormUsers
+        <FormAcademies
           visible={visible}
           setVisible={setVisible}
           data={data}

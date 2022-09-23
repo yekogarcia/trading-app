@@ -116,7 +116,7 @@ export const addUsers = (values) => {
     return async (dispatch) => {
         const resp = await fetchWithoutToken('ad/add-user', { ...values }, 'POST');
         let body = await resp.json();
-        
+
         console.log(body);
         if (body.ok) {
             body.msg.key = body.msg.id;
@@ -188,6 +188,21 @@ export const getProfiles = () => {
 export const getAcademiesProfile = () => {
     return async (dispatch) => {
         const resp = await fetchWithoutToken('ad/academies', 'GET');
+        const body = await resp.json();
+
+        if (body.ok) {
+            return body.data;
+        } else {
+            console.log(body)
+            Swal.fire('Error', body.msg, 'error');
+        }
+    }
+}
+
+export const removeFiles = (values) => {
+    console.log(values);
+    return async (dispatch) => {
+        const resp = await fetchWithoutToken('ad/remove-file',{...values}, 'DELETE');
         const body = await resp.json();
 
         if (body.ok) {

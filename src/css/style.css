@@ -3,10 +3,17 @@
 @import url("./width.css");
 @import url("./responsive.css");
 
-html,
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+html {
+  
+  font-size: 62.5%;
+}
+html,
+body {
   color: var(--blue-dark) !important;
   font-family: Montserrat-Light !important;
 }
@@ -506,7 +513,6 @@ p.description-plan {
 .wallets .check_none {
   display: none;
 }
-
 
 button.wall-continue {
   width: 200px;
